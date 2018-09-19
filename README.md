@@ -1,4 +1,4 @@
-# Basic Sortable-list Example
+# Sortable (Drag & Drop) List
 
 This is a sample application showing how to build a sortable list by placing a drag handle.
 
