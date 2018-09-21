@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
 	<div>Sortable list</div>
 	<div fxFlex style="margin:auto;"></div>
-	<button mat-icon-button (click)="edit()"><mat-icon>edit</mat-icon></button>
+	<button mat-button (click)="edit()">{{draggable ? "SAVE" : "EDIT"}}</button>
 </mat-toolbar>
 <mat-nav-list *ngIf="data.length > 0"  [disableRipple]="draggable">
   <section *ngIf="!draggable">
