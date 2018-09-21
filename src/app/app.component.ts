@@ -1,18 +1,29 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { VERSION, MatMenuTrigger } from '@angular/material';
-import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
+import { moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'material-app',
   templateUrl: 'app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 
 })
 export class AppComponent implements OnInit {
 
   version = VERSION;
 
-  data: any[] = [];
+  data = [{
+    'name': 'George Washington',
+    'details': '1789'
+  },
+  {
+    'name': 'John Adams',
+    'details': '1796'
+  },
+  { 'name': 'Thomas Jefferson', 'details': '1800' },
+  { 'name': 'James Madison', 'details': '1808' },
+  { 'name': 'James Monroe', 'details': '1812' }
+  ];
   item: any = "";
   draggable: boolean = false;
 
@@ -27,21 +38,8 @@ export class AppComponent implements OnInit {
     console.log(this.draggable);
   }
 
-  createItem(index: number) {
-    return { id: index, name: `Item ${index}`, details: `item ${index} details` };
-  }
-  createRandomItem() {
-    const int: number = parseInt((Math.random() * 100) + '', 10);
-    return this.createItem(int);
-  }
-  updateTable() {
-    this.dataSource = JSON.parse(JSON.stringify(this.data));
-  }
   ngOnInit(): void {
-    for (let i = 1; i <= 10; i++) {
-      this.data.push(this.createRandomItem());
-    }
-    this.updateTable();
+
   }
   onOpenMenu(menu: any): void {
     console.log(menu);
@@ -52,17 +50,5 @@ export class AppComponent implements OnInit {
   }
   isSelected(item: any) {
     return this.item === item;
-  }
-  onAddItem() {
-    this.data.push(this.createRandomItem());
-    this.updateTable();
-  }
-  onRemoveItem(item: any) {
-    this.data.splice(this.data.indexOf(item), 1);
-    this.updateTable();
-  }
-  onRemoveAll() {
-    this.data = [];
-    this.updateTable();
   }
 }
