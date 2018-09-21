@@ -1,28 +1,30 @@
 <mat-toolbar color="primary">
 	<div>Sortable list</div>
 	<div fxFlex style="margin:auto;"></div>
-	<button mat-button (click)="edit()">{{draggable ? "SAVE" : "EDIT"}}</button>
+	<button mat-icon-button (click)="edit()">
+    <mat-icon>{{draggable ? "check" : "edit"}}</mat-icon>
+  </button>
 </mat-toolbar>
-<mat-nav-list *ngIf="data.length > 0"  [disableRipple]="draggable">
-  <section *ngIf="!draggable">
-  	<mat-list-item *ngFor="let i of data" [ngClass]="{'selected': isSelected(i)}" (click)="onSelected(i)">
+<mat-nav-list *ngIf="data.length > 0" [disableRipple]="draggable">
+	<section *ngIf="!draggable">
+		<mat-list-item *ngFor="let i of data" [ngClass]="{'selected': isSelected(i)}" (click)="onSelected(i)">
 			<div mat-line>
 				{{ i.name }}
 			</div>
-			<p mat-line>
+			<div>
 				{{ i.details }}
-			</p>
+			</div>
 		</mat-list-item>
-  </section>
+	</section>
 	<cdk-drop (dropped)="onDrop($event)" *ngIf="draggable">
-		<mat-list-item *ngFor="let i of data" [ngClass]="{'selected': isSelected(i)}" (click)="onSelected(i)" cdkDrag>
-      <mat-icon matListIcon cdkDragHandle class="handler">drag_handle</mat-icon>
+		<mat-list-item *ngFor="let i of data" (click)="onSelected(i)" [ngClass]="{'selected': isSelected(i)}" cdkDrag>
+			<mat-icon matListIcon cdkDragHandle class="handler">drag_indicator</mat-icon>
 			<div mat-line>
 				{{ i.name }}
 			</div>
-			<p mat-line>
+			<div>
 				{{ i.details }}
-			</p>
+			</div>
 		</mat-list-item>
 	</cdk-drop>
 </mat-nav-list>
